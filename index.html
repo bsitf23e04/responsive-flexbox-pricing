@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing — Flexbox Version</title>
+  <style>
+    /* ============================================
+       FLEXBOX VERSION — Pricing Layout
+       Layout built ONLY with display: flex
+       Responsive: stacks to 1 column below 600px
+       ============================================ */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #0d9488;
+      --primary-dark: #0f766e;
+      --dark: #0f172a;
+      --gray: #64748b;
+      --light: #f8fafc;
+      --border: #e2e8f0;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+
+      /* FLEXBOX: page skeleton (header / main / footer) */
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ---------- HEADER (Flexbox) ---------- */
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+
+      /* FLEXBOX: logo left, nav right */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    nav {
+      /* FLEXBOX: nav links in a row */
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--gray);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .badge {
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* ---------- MAIN ---------- */
+    main {
+      flex: 1; /* FLEXBOX: main fills remaining height, pushes footer down */
+      padding: 3rem 2rem;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .intro h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .intro p {
+      color: var(--gray);
+    }
+
+    /* ---------- PRICING CARDS (Flexbox) ---------- */
+    .pricing {
+      /* FLEXBOX: 3 cards in a row */
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      /* FLEXBOX: each card takes equal width */
+      flex: 1;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+
+      /* FLEXBOX: card content stacked vertically */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card.popular {
+      border: 2px solid var(--primary);
+      position: relative;
+    }
+
+    .popular-tag {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.2rem 1rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .plan-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .plan-desc {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .price {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+    }
+
+    .price span {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--gray);
+    }
+
+    .features {
+      list-style: none;
+      flex: 1; /* FLEXBOX: pushes button to card bottom */
+      margin-bottom: 1.5rem;
+    }
+
+    .features li {
+      padding: 0.4rem 0;
+      font-size: 0.92rem;
+      color: var(--dark);
+    }
+
+    .features li::before {
+      content: "✓ ";
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .btn {
+      display: block;
+      text-align: center;
+      padding: 0.75rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn.primary {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+      color: var(--white);
+      border-color: var(--primary-dark);
+    }
+
+    /* ---------- FOOTER (Flexbox) ---------- */
+    footer {
+      background: var(--dark);
+      color: #cbd5e1;
+      padding: 1.5rem 2rem;
+
+      /* FLEXBOX: copyright left, links right */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer .links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    footer a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    footer a:hover {
+      color: var(--white);
+    }
+
+    /* ============================================
+       RESPONSIVE — below 600px stack to 1 column
+       ============================================ */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column; /* FLEXBOX: header stacks vertically */
+        text-align: center;
+      }
+
+      .pricing {
+        flex-direction: column; /* FLEXBOX: cards stack into 1 column */
+        align-items: stretch;
+      }
+
+      footer {
+        flex-direction: column; /* FLEXBOX: footer stacks vertically */
+        text-align: center;
+      }
+    }
+ .grid-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: #0d9488;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.grid-btn:hover {
+    background: #0f766e;
+    transform: translateY(-2px);
+}
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">LayoutLab</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Features</a>
+      <a href="#">Pricing</a>
+      <span class="badge">Flexbox Version</span>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <div class="intro">
+      <h1>Simple, Transparent Pricing</h1>
+      <p>Choose the plan that fits your team. Built with Flexbox only.</p>
+    </div>
+
+    <section class="pricing">
+      <!-- Card 1 -->
+      <article class="card">
+        <h2 class="plan-name">Starter</h2>
+        <p class="plan-desc">For individuals getting started</p>
+        <div class="price">$9<span>/month</span></div>
+        <ul class="features">
+          <li>1 project</li>
+          <li>5 GB storage</li>
+          <li>Community support</li>
+          <li>Basic analytics</li>
+        </ul>
+        <a href="#" class="btn">Get Started</a>
+      </article>
+
+      <!-- Card 2 (Popular) -->
+      <article class="card popular">
+        <span class="popular-tag">Most Popular</span>
+        <h2 class="plan-name">Pro</h2>
+        <p class="plan-desc">For growing teams and startups</p>
+        <div class="price">$29<span>/month</span></div>
+        <ul class="features">
+          <li>Unlimited projects</li>
+          <li>100 GB storage</li>
+          <li>Priority support</li>
+          <li>Advanced analytics</li>
+          <li>Team collaboration</li>
+        </ul>
+        <a href="#" class="btn primary">Get Started</a>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="card">
+        <h2 class="plan-name">Enterprise</h2>
+        <p class="plan-desc">For large organizations</p>
+        <div class="price">$99<span>/month</span></div>
+        <ul class="features">
+          <li>Everything in Pro</li>
+          <li>Unlimited storage</li>
+          <li>Dedicated support</li>
+          <li>Custom integrations</li>
+          <li>SLA guarantee</li>
+        </ul>
+        <a href="#" class="btn">Contact Sales</a>
+      </article>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 LayoutLab. All rights reserved.</p>
+    <div class="links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+      <a href="grid.html" class="grid-btn">View Grid Version</a>
+    </div>
+  </footer>
+
+</body>
+</html>
